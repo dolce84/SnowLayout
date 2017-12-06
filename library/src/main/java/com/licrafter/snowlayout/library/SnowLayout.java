@@ -26,6 +26,8 @@ import java.util.Random;
  **/
 public class SnowLayout extends FrameLayout {
 
+    private static final int DEFAULT_BOUNDS = 100;
+
     private Random mRandom;
     private Handler mHandler;
     private Runnable mRunnable;
@@ -178,7 +180,7 @@ public class SnowLayout extends FrameLayout {
      * @return
      */
     private PointF getEndPoint() {
-        float endX = mRandom.nextInt(getWidth());
+        float endX = mRandom.nextInt(getXBounds());
         return new PointF(endX, getHeight());
     }
 
@@ -188,7 +190,7 @@ public class SnowLayout extends FrameLayout {
      * @return
      */
     private PointF getStartPoint() {
-        int x = mRandom.nextInt(getWidth());
+        int x = mRandom.nextInt(getXBounds());
         return new PointF(x, mGenerateY);
     }
 
@@ -201,7 +203,7 @@ public class SnowLayout extends FrameLayout {
     private PointF getAuxiliaryPoint(int index) {
         PointF pointF = new PointF();
         //控制点x坐标在50和width之间
-        pointF.x = mRandom.nextInt(getWidth());
+        pointF.x = mRandom.nextInt(getXBounds());
         //第一个控制点坐标y在屏幕上半部，第二个控制点y在屏幕下半部
         pointF.y = mRandom.nextInt(getHeight() / 2) + getHeight() / 2 * index;
         return pointF;
@@ -246,5 +248,14 @@ public class SnowLayout extends FrameLayout {
      */
     public void setLandDuration(int duration) {
         this.mLandDuration = duration;
+    }
+
+    /**
+     * get x bounds
+     *
+     * @return
+     */
+    private int getXBounds() {
+        return getWidth() <= 0 ? DEFAULT_BOUNDS : getWidth();
     }
 }

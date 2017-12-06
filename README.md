@@ -25,7 +25,7 @@ Add it in your root build.gradle at the end of repositories:
 **Step 2.** Add the dependency
 ```
 	dependencies {
-	        compile 'com.github.shellljx:SnowLayout:v1.2'
+	        compile 'com.github.shellljx:SnowLayout:v1.1.1'
 	}
 ```
 ---
